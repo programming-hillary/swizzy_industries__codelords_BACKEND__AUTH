@@ -1,0 +1,36 @@
+spring:
+  config:
+    import: 
+      - optional:secrets/dev/secret-properties.yml
+      - optional:configserver:http://localhost:8888
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  mail:
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enabled: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+  application:
+    name: auth_service
+  servlet:
+    multipart:
+      max-file-size: 50MB
+
+server:
+  port: 0
+  servlet:
+    context-path: /api/v1
